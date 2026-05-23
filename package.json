@@ -26,6 +26,7 @@
 		"index.ts",
 		"README.md",
 		"LICENSE",
+		"docs/images/codex-fast-mode.png",
 		"package.json"
 	],
 	"scripts": {
@@ -37,7 +38,8 @@
 	"pi": {
 		"extensions": [
 			"./index.ts"
-		]
+		],
+		"image": "https://raw.githubusercontent.com/pro-vi/pi-codex-fast-mode/main/docs/images/codex-fast-mode.png"
 	},
 	"peerDependencies": {
 		"@earendil-works/pi-ai": "*",
