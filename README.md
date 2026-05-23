@@ -43,6 +43,29 @@ pi --codex-fast
 
 `force` sends priority for any `openai-codex-responses` model.
 
+## Cost accounting
+
+I don't patch usage cost here. Pi already does that in the Codex provider.
+
+Proof from `@earendil-works/pi-ai@0.74.0/dist/providers/openai-codex-responses.js`:
+
+```js
+if (options?.serviceTier !== undefined) {
+  body.service_tier = options.serviceTier;
+}
+
+processResponsesStream(..., {
+  serviceTier: options?.serviceTier,
+  applyServiceTierPricing: (usage, serviceTier) =>
+    applyServiceTierPricing(usage, serviceTier, model),
+});
+
+case "priority":
+  return model.id === "gpt-5.5" ? 2.5 : 2;
+```
+
+So the extension should not touch `message.usage.cost`. OpenAI dashboard is still the billing truth.
+
 ## Dev
 
 ```bash
